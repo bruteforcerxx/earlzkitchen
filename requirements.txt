@@ -97,7 +97,6 @@ PyTweening==1.0.3
 pytz==2019.3
 pywebpush==1.11.0
 pywhatkit==3.8
-pywin32==300
 PyYAML==5.3.1
 pyzbar==0.1.8
 rave-python==1.1.2
