@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from rest_framework import status
 from django.template import loader
-from .models import ContactMessages, NewsLetter
+from .models import ContactsMessages, NewsLetter
 from rest_framework.decorators import api_view
 
 
@@ -77,7 +77,7 @@ def contact(request):
     print(name)
     print(email)
     print(message)
-    message = ContactMessages(first_name=name, email=email, message=message)
+    message = ContactsMessages(first_name=name, email=email, message=message)
     message.save()
 
     page = 'contact_thanks.html'
