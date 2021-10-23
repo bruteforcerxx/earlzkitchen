@@ -55,7 +55,6 @@ def confirm_order(request, item):
     details = {'name': name, 'phone': phone, 'quantity': quantity, 'address': address, 'food': food,
                'price': price, 'item_num': item}
     context = {'details': details}
-    print(context)
     return HttpResponse(template.render(context, request), status=status.HTTP_200_OK)
 
 
@@ -73,12 +72,6 @@ def contact(request):
     name = request.POST.get('name', '')
     email = request.POST.get('email', '')
     message = request.POST.get('message', '')
-
-    print(name)
-    print(email)
-    print(message)
-    message = ContactsMessages(first_name=name, email=email, message=message)
-    message.save()
 
     page = 'contact_thanks.html'
     template = loader.get_template(page)
