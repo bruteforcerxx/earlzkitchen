@@ -13,18 +13,19 @@ def home_page(request):
     page = 'index.html'
     template = loader.get_template(page)
     menu = []
-    for x in range(1,6):
-        image = f'images/earlz{x}.jpg'
-        menu.append(image)
+    for x in range(1,4):
+        item = {"food": f"Food{x}", "price": "2000", "image":  f'images/earlz{x}.jpg', "item_num": x, "desc": f"food description here"}
+        menu.append(item)
     context = {'menu': menu}
     return HttpResponse(template.render(context, request), status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
-def order(request):
+def order(request, item):
     page = 'order.html'
     template = loader.get_template(page)
-    context = {'email': ''}
+    item = {"brand": f"Food{item}", "price": "2000", "image": f'images/earlz{item}.jpg', "item_num": item}
+    context = {'item': item}
     return HttpResponse(template.render(context, request), status=status.HTTP_200_OK)
 
 
@@ -34,18 +35,38 @@ def menu(request):
     template = loader.get_template(page)
     menu = []
     for x in range(1,7):
-        image = f'images/earlz{x}.jpg'
-        menu.append(image)
+        item = {"food": f"Food{x}", "price": "2,000", "image":  f'images/earlz{x}.jpg',  "item_num": x,
+                "desc": f"food description here"}
+        menu.append(item)
     context = {'menu': menu}
     return HttpResponse(template.render(context, request), status=status.HTTP_200_OK)
 
 
-@api_view(['GET'])
-def confirm_order(request):
-    page = 'confirm.html'
+@api_view(['POST'])
+def confirm_order(request, item):
+    page = 'confirmorder.html'
     template = loader.get_template(page)
-    context = {'email': ''}
+    name = request.POST.get('name', '')
+    phone = request.POST.get('phone', '')
+    quantity = request.POST.get('quantity', '')
+    address = request.POST.get('address', '')
+    food = f'food{item}'
+    price = '2,000'
+    details = {'name': name, 'phone': phone, 'quantity': quantity, 'address': address, 'food': food,
+               'price': price, 'item_num': item}
+    context = {'details': details}
+    print(context)
     return HttpResponse(template.render(context, request), status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def purchase_thanks(request):
+    page = 'purchase_thanks.html'
+    template = loader.get_template(page)
+    image = f'images/earlz1.jpg'
+    context = {'image': image}
+    return HttpResponse(template.render(context, request), status=status.HTTP_200_OK)
+
 
 @api_view(['POST'])
 def contact(request):
@@ -59,9 +80,18 @@ def contact(request):
     message = ContactMessages(first_name=name, email=email, message=message)
     message.save()
 
-    page = 'thanks.html'
+    page = 'contact_thanks.html'
     template = loader.get_template(page)
     context = {'name': str(name).capitalize()}
+    return HttpResponse(template.render(context, request), status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def contact_thanks(request):
+    page = 'contact_thanks.html'
+    template = loader.get_template(page)
+    image = f'images/earlz1.jpg'
+    context = {'image': image}
     return HttpResponse(template.render(context, request), status=status.HTTP_200_OK)
 
 

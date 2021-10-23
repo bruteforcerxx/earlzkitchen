@@ -64,7 +64,7 @@ http://www.templatemo.com/tm-515-eatery
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="">Call Now! <i class="fa fa-phone"></i>+234 810 541 9916"</a></li>
+                         <li><a href="#">Call Now! <i class="fa fa-phone"></i> 010 020 0340</a></li>
                          <a href="#footer" class="section-btn">Reserve a table</a>
                     </ul>
                </div>
@@ -85,29 +85,36 @@ http://www.templatemo.com/tm-515-eatery
                               <h2>Our Menus</h2>
                               <h4>Dishes &amp; Cuisines</h4></div>
                     </div>
-                    {% for items in menu %}
-                    <div class="col-md-4 col-sm-6" style="margin-bottom: 20px;">
-                         <!-- MENU THUMB -->
-                         <div class="menu-thumb">
-                              <a href="{% static items.image %}" class="image-popup" title="{{ items.food }}">
-                                   <img src="{% static items.image  %}" class="img-responsive" alt="">
-                                   <div class="menu-info">
-                                        <div class="menu-item">
-                                             <h3>{{items.food}}</h3>
-                                             <p>{{items.desc}}</p>
-                                        </div>
-                                        <div class="menu-price">
-                                             <span>₦{{items.price}}</span>
+                    {% for imgs in menu %}
+                    <section id="contact" data-stellar-background-ratio="0.5">
+                         <div class="container">
+                              <div class="row">
+                                   <div class="col-md-4 col-sm-6">
+                                        <!-- MENU THUMB -->
+                                        <div class="menu-thumb">
+                                             <a href="{% static imgs %}" class="image-popup" title="American Breakfast">
+                                                  <img src="{% static imgs  %}" class="img-responsive" alt="">
+                                                  <div class="menu-info">
+                                                       <div class="menu-item">
+                                                            <h3>Fried rice</h3>
+                                                            <p>Noodles / Eggs / Vegetables</p>
+                                                       </div>
+                                                       <div class="menu-price">
+                                                            <span>₦1,500</span>
+                                                       </div>
+                                                  </div>
+                                             </a>
                                         </div>
                                    </div>
-                              </a>
+                                   <form action="{% url 'order' %}" method="get" class="wow fadeInUp" id="contact-form" role="form" data-wow-delay="0.8s">
+                                        <div class="col-md-12 col-sm-12">
+                                             <button type="submit" class="form-control" id="cf-submit" name="submit" style="background-color: #1fd518;">Order</button>
+                                        </div>
+                                   </form>
+                              </div>
                          </div>
-                         <a href="{% url 'order' items.item_num %} ">
-                         <button type="button" class="btn" id="cf-submit" name="submit" style="min-width: 80%; min-height: 50px; color: white; background-color:  #1fd518;   border-radius: 0;  border: 0; font-weight: 1000;  transition-duration: 0.4s;">Order now</button>
-                              </a>
-                    </div>
+                    </section>
                     {% endfor %}
-
                </div>
           </div>
           </div>
@@ -128,7 +135,6 @@ http://www.templatemo.com/tm-515-eatery
                </div>
           </div>
      </section>
-
 
        <!-- FOOTER -->
      <footer id="footer" data-stellar-background-ratio="0.5">
@@ -182,7 +188,7 @@ http://www.templatemo.com/tm-515-eatery
                          <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
                               <li><a href="https://m.facebook.com/earlz.kitchenco" class="fa fa-facebook-square" attr="facebook icon"></a></li>
                               <li><a href="https://www.instagram.com/earlz_foodbrandltd/" class="fa fa-instagram"></a></li>
-                   <li><a href="tel:0810-541-9916" class="fa fa-whatsapp"></a></li>
+                              <li><a href="tel-+2348105419916" class="fa fa-whatsapp"></a></li>
                          </ul>
 
                          <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
@@ -191,10 +197,11 @@ http://www.templatemo.com/tm-515-eatery
                               <br><br>Powered by <a rel="nofollow" href="http://bruteforce.herokuapp.com" target="_parent">Bruteforce</a></p>
                          </div>
                     </div>
-
+                    
                </div>
           </div>
      </footer>
+
 
      <!-- SCRIPTS -->
 

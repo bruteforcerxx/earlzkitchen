@@ -62,7 +62,7 @@
         return openerElement.is('img') ? openerElement : openerElement.find('img');
         }
       }
-    });
+    });  
 
 /*
     // CONTACT FORM
@@ -108,7 +108,7 @@
           }, 1000);
             event.preventDefault();
       });
-    });
+    });  
 
 
     // WOW ANIMATION
